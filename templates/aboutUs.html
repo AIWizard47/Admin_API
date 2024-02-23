@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>About Us - Bootdey.com</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<style type="text/css">
+  body { 
+    margin-top: 30px;
+  }
+  .text-div h3 {
+    position: absolute;
+    margin-top: 0pc;
+    width: 222px;
+    bottom: 8rem;
+    left: 25rem;
+    background-color: #18de82;
+    padding: 13px 24px;
+    color: white;
+    font-family: 'Cabin', sans-serif;
+    box-shadow: 6px 7px 1px -1px #00000029;
+  }
+  .small-txt {
+    background-color: #0d6efd;
+    padding: 6px 20px;
+    color: white;
+  }
+  .about-sec h2 {
+    font-family: 'Cabin', sans-serif;
+    font-size: 40px;
+    padding: 15px 0px 15px 0px;
+  }
+  .empty {
+    width: 50px;
+    height: 2px;
+    background-color: #18de82;
+  }
+  .line-head {
+    display: flex;
+  }
+  .line-head p {
+    margin-top: -12px;
+    margin-left: 15px;
+  }
+  .main-para {
+    padding-top: 20px;
+    padding-bottom: 6px;
+  }
+  a { font-family: 'Cabin', sans-serif; }
+  h1 {
+    position: absolute;
+    top: -9%;
+    z-index: -111;
+    font-size: 249px;
+    color: #cac8c812 !important;
+    text-align: center !important;
+    margin: 0px auto;
+    display: block;
+  }
+  .card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  .card-body {
+    padding: 20px;
+  }
+  .code-block {
+    background-color: #f7f7f7;
+    border-radius: 5px;
+    padding: 10px;
+    overflow-x: auto;
+  }
+  @media (min-width: 768px) {
+    .left-most {
+      margin-left: 0;
+    }
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Square+Peg&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<section class="about-sec">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="w-50 img-fluid">
+      </div>
+      <div class="col-md-6">
+        <span class="small-txt">About Us</span>
+        <h2 class="my-3">Welcome to A My Site !!!</h2>
+        <div class="line-head">
+          <div class="empty"></div>
+          <p>Here you will get all the APIs, storage to make your own projects</p>
+        </div>
+        <p class="main-para">This is an API hosting site where you can use the API for free and create your own app server. If you want to create one, simply log in and generate your API key, which will help you fetch the data. You can utilize various HTTP methods such as 'GET' and 'POST' here, among other functionalities.</p>
+        <div class="card">
+          <div class="card-body">
+            <p>For implementing in Flutter, use this...</p>
+            <div class="code-block">
+              <pre><code>
+        Future<void> fetchData() async {
+          final url = Uri.parse('http://127.0.0.1:8000/demo/');
+          final response = await http.get(
+            url,
+            headers: {
+              'Authorization': 'Token YOUR_TOKEN',
+            },
+          );
+
+          if (response.statusCode == 200) {
+            // Request was successful, parse the response data
+            final responseData = json.decode(response.body);
+            print(responseData);
+          } else {
+            // Request failed
+            print('Request failed with status: ${response.statusCode}');
+          }
+        }
+              </code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <p>For implementing in JavaScript, use this...</p>
+            <div class="code-block">
+              <pre><code>
+        fetch('http://127.0.0.1:8000/demo/', {
+          method: 'GET',
+          headers: {
+            'Authorization': 'Token YOUR_TOKEN'
+          }
+        })
+        .then(response => {
+          if (response.ok) {
+            // Request was successful, parse the response data
+            return response.json();
+          } else {
+            // Request failed
+            console.error('Request failed with status:', response.status);
+            return null;
+          }
+        })
+        .then(data => {
+          // Handle the response data
+          console.log(data);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+              </code></pre>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-body">
+            
+            <p>@> .Make sure you have the necessary permissions in your AndroidManifest.xml to access the internet. Add the following permission if it's not already present:</p>
+            <div class="code-block">
+            <pre><code>&lt;uses-permission android:name="android.permission.INTERNET" /&gt;</code></pre>
+            </div>
+            <p>@> .Import the required classes and packages in your Java file:</p>
+            <div class="code-block">
+            <pre><code>
+        import android.os.AsyncTask;
+        import android.util.Log;
+        import org.json.JSONException;
+        import org.json.JSONObject;
+        import java.io.BufferedReader;
+        import java.io.IOException;
+        import java.io.InputStream;
+        import java.io.InputStreamReader;
+        import java.net.HttpURLConnection;
+        import java.net.URL;</code></pre>
+            </div>
+            <p>@> .Define an AsyncTask to perform the network operation asynchronously:</p>
+            <div class="code-block">
+            <pre><code>public class FetchDataAsyncTask extends AsyncTask&lt;Void, Void, String&gt; {
+            @Override
+            protected String doInBackground(Void... voids) {
+                HttpURLConnection urlConnection = null;
+                BufferedReader reader = null;
+                String response = null;
+                
+                try {
+                    // Create URL object
+                    URL url = new URL("http://127.0.0.1:8000/demo/");
+                    
+                    // Create connection
+                    urlConnection = (HttpURLConnection) url.openConnection();
+                    urlConnection.setRequestMethod("GET");
+                    urlConnection.setRequestProperty("Authorization", "Token YOUR_TOKEN");
+                    urlConnection.connect();
+                    
+                    // Read input stream into a String
+                    InputStream inputStream = urlConnection.getInputStream();
+                    StringBuilder buffer = new StringBuilder();
+                    if (inputStream == null) {
+                        // Nothing to do
+                        return null;
+                    }
+                    reader = new BufferedReader(new InputStreamReader(inputStream));
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        buffer.append(line).append("\n");
+                    }
+                    if (buffer.length() == 0) {
+                        // Stream was empty
+                        return null;
+                    }
+                    response = buffer.toString();
+                } catch (IOException e) {
+                    Log.e("FetchDataAsyncTask", "Error ", e);
+                    // Handle error
+                } finally {
+                    // Close the connection
+                    if (urlConnection != null) {
+                        urlConnection.disconnect();
+                    }
+                    if (reader != null) {
+                        try {
+                            reader.close();
+                        } catch (final IOException e) {
+                            Log.e("FetchDataAsyncTask", "Error closing stream", e);
+                        }
+                    }
+                }
+                return response;
+            }
+        
+            @Override
+            protected void onPostExecute(String result) {
+                super.onPostExecute(result);
+                // Handle the response here
+                if (result != null) {
+                    try {
+                        JSONObject jsonResponse = new JSONObject(result);
+                        // Process the JSON response
+                        Log.d("Response", jsonResponse.toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        // Handle JSON parsing error
+                    }
+                }
+            }
+        }</code></pre>
+      </div>
+            <p>Replace 'YOUR_TOKEN' with the actual token you want to use for authorization.</p>
+            <p>To execute the AsyncTask and fetch data, you can call execute() method:</p>
+            <div class="code-block">
+            <pre><code>              new FetchDataAsyncTask().execute();</code></pre>
+            </div>
+            <p>Ensure you call this method from an appropriate place in your code, such as an activity or fragment.</p>
+          </div>
+      </div>
+        
+
+        <a class="btn btn-primary rounded-pill w-25" href="{%url 'index'%}">Get Started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="text-center">About Us</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript">
+  
+</script>
+</body>
+</html>

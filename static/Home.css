@@ -1,0 +1,147 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
+}
+body{
+    min-height: 100vh;  
+    overflow-x: hidden;
+    background: linear-gradient(#271b50,#341922);
+}
+.backGround{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;  
+}
+.backGround ul{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.backGround ul li{
+    list-style: none;
+}
+.backGround ul li a{
+    text-decoration: none;
+    padding:6px 15px ;
+    font-size: 18px;
+    color: whitesmoke;
+    border-radius: 20px;
+    text-shadow: .1px .1px 4px rgb(4, 35, 38);
+}
+
+.backGround ul li a.LBot {
+    /* Your styles for the login button here */
+    /* For example, you can add a background color and adjust padding */
+    background-color: #125153;
+    padding: 8px 20px;
+    margin-left: 118vh; /* Move the login button to the right side */
+    opacity: .7;
+}
+
+.backGround ul li a.LBot:hover {
+    /* Your hover styles here */
+    /* For example, change the background color and add a box shadow */
+
+    box-shadow: 2px 2px 15px whitesmoke;
+    opacity: 1;
+}
+.backGround ul li a:hover,
+.backGround ul li a.HBot
+{
+    background: rgb(179, 235, 245);
+    box-shadow: 2px 2px 15px whitesmoke;
+    color: #341922;
+}
+
+section{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    padding:100px;
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+}
+section::before{
+    content:'';
+    position: absolute; 
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background:linear-gradient(to top, #1c0522,transparent);
+    z-index: 1000;
+
+}
+section img{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+}
+section img#moon{
+    mix-blend-mode: screen;
+}
+section img#frontM{
+    z-index:10;
+}
+#text{
+    position: absolute;
+    right: -350px;
+    color: white;
+    white-space:nowrap;
+    font-size: 7.5vw;
+    z-index:9;
+}
+.secText{
+    position: relative;
+    background: #1c0522;
+    padding: 100px;
+}
+.secText h2{
+    font-size: 3.5em;
+    color: #fff;
+    margin: 10px;
+}
+.secText p{
+    font-size:1.2em;
+    color: #fff;
+
+}
+section #Ebtn{
+    z-index: 9;
+    overflow: hidden;
+}
+#Ebtn{
+    border-radius: 30%;
+    padding: 6px;   
+    margin: 6px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background: rgb(179, 235, 245);;
+    color: #1c0522;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 2px 3px 15px #edecfe;
+}
+::-webkit-scrollbar{
+    width: 15px;
+}
+::-webkit-scrollbar-track{
+    background: #341922;
+}
+::-webkit-scrollbar-thumb{
+    background: linear-gradient(rgb(77, 16, 174),rgb(34, 101, 159),rgb(26, 180, 197));
+    border-radius: 10px;
+}

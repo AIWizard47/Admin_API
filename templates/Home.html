@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'Home.css'%}" />
+    <title>Home</title>     
+
+</head>
+<body>
+    <header class="backGround">
+        <nav class="Navigation">
+            <ul class="NavCom">
+                <li class="Home">
+                    <a class="HBot" href="#">HOME</a>
+                </li>
+                <li class="Home">
+                    <a class="ABot" href="{%url 'about' %}" id="ABot">About</a>
+                </li>
+                <li class="Home">
+                    <a class="DBot" href="#">DOC</a>
+                </li>
+                <li class="Home">
+                    <a class="CBot" href="{%url 'contact'%}">Contact </a>
+                </li>
+                <li class="Home">
+                    {%if user.is_authenticated%}
+                    <a class="APIBot" href="/profile/user/{{ user.username }}">Profile </a>
+                    {% endif %}
+
+                </li>
+                <li class="Home">
+                    {%if not user.is_authenticated%}
+                    <a class="LBot" href="{%url 'login'%}">Login</a>
+                    {% else %}
+                    <a class="LBot" href="{%url 'logout'%}">LogOut</a>
+                    {% endif %}
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <img src="{% static 'images/star.png' %}"  id="star">
+        <img src="{% static 'images/moon.png' %}" id="moon">
+        <img src="{% static 'images/behindM.png' %}" id="behindM">
+        <h2 id="text">Welcome</h2>
+        <button id="Ebtn">Explore</button>
+        <img src="{% static 'images/frontM.png' %}" id="frontM">
+    </section>
+    <div class="secText">
+        <h2>Introduction about this site.</h2>
+        <p> Given a sorted dictionary of an alien <br>language h.Note: Many orders may be possible <br> for a particular test case, thus you may return            any valid order and output will be 1<br> if the order of string returned by the function is correct else 0 denoting incorrect string            Given a sorted dictionary of an alien<br><br> language having N words and k starting alphabets of            standard dictionary. Find the order of characters in the alien language.Note: Many orders may be possible <br> for a particular test case, thus you may return           any valid order and output will be <br> 1 if the order of string returned by the function is correct else 0 denoting incorrect string           Given a sorted dictionary of an alien <br>language having N words and k starting alphabets of           standard dictionary. Find the order of characters in the alien language.          Note: Many orders may be possible <br> for a particular test case, thus you may  language having N words and k starting alphabets of         standard dictionary. Find the order of characters in the alien language.        Note: Many orders may be possible <br> for a particular test case, thus you may return        any valid order and output will be 1<br> if the order of string returned by the function is correct else 0 denoting incorrect string<br>        Given a sorted dictionary of an alien language having N words and k starting alphabets of<br><br>        standard dictionary. Find the order of characters in the alien language.       Note: Many ordersmay be possible <br> for a particular test case, thus you may return       any valid order and output will be 1 if the order of string returned by the function is correct else 0 denoting incorrect stGiven a sorted dictionary of an alien <br>language having N words and k starting alphabets of       standard dictionary. Find the order of characters in the alien language.      Note: Many orders may be possible <br> for a particular test case, thus you may returnany valid order and output will be 1<br> if the order of string returned by the function is correct else 0 denoting incorrect string      Given a sorted dictionary of an alien<br><br> language having N words and k starting alphabets of      standard dictionary. Find the order of characters in the alien language.  Note: Many orders may be possible <br> for a particular test case, thus you may return     any valid order and output will be <br> 1 if the order of string returned by the function is correct else 0 denoting incorrect string     Given a sorted dictionary of an alien <br>language having N words and k starting alphabets of     standard dictionary. Find the order of characters in the alien language.    Note: Many orders may be possible <br> for a particular test case, thus you may return    any valid order and output will be 1<br> if the order of string returned by the function is correct else 0 denoting incorrect string    Given a sorted dictionary of an alie<br><br>n language having N words and k starting alphabets of    standard dictionary. Find the order of characters in the alien language.   Note: Many orders may be possible <br> for a particular test case, thus you may return   any valid order and output will be 1<br> if the order of string returned by the function is correct else 0 denoting incorrect string   Given a sorted dictionary of an alie<br>n language having N words and k starting alphabets of   standard dictionary. Find the order of characters in the alien language.  Note: Many orders may be possible <br> for a particular test case, thus you may return  any valid order and output will be 1<br> if the order of string returned by the function is correct else 0 denoting incorrect string<br>  Given a sorted dictionary of an alien language having N words and k starting alphabets of<br><br>  standard dictionary. Find the order of characters in the alien language. Note: Many orders may be possible <br> for a particular test case, thus you may return any valid order and output will be 1 if the order of string returned by the function is correct else 0 denoting incorrect string Given a sorted dictionary of an alien <br>language having N words and k starting alphabets f standard dictionary. Find the order of characters in the alien language.Note: Many orders may be possible <br> for a particular test case, thus you may returnany valid order and output will be 1<br> if the order of string returned by the function is correct else 0 denoting incorrect stringGiven a sorted dictionary of an alien<br><br> language having N words and k starting alphabets ofstandard dictionary. Find the order of characters in the alien language.Note: Many orders may be possible <br> for a particular test case, thus you may returnany valid order and output will be <br> 1 if the order of string returned by the function is correct else 0 denoting incorrect stringGiven a sorted dictionary of an alien <br>language having N words and k starting alphabets fstandard dictionary. Find the order of characters in the alien language.Note: Many orders may be possible <br> for a particular test case, thus you may returnany valid order and output will be 1<br> if the order of string returned by the function is correct else 0 denoting incorrect string Given a sorted dictionary of an alie<br><br>n language having N words and k starting alphabets ofstandard dictionary. Find the order of characters in the alien language.Note: Many orders may be possible <br> for a particular test case, thus you may returnany valid order and output will be 1<br> if the order of string returned by the function is correct else 0 denoting incorrect stringGiven a sorted dictionary of an alie<br>n language having N words and k starting alphabets ofstandard dictiobe 1 if the order of  returned by the function is correct else 0 denoting incorrect string</p>
+        <p id="Doc">DOC</p>
+        <p id="Contact">+91-234-343-4324  &nbsp &nbsp &nbsp ||   &nbsp &nbsp &nbsp  YOUTUBE  &nbsp  &nbsp &nbsp &nbsp ||  &nbsp &nbsp &nbsp Instagram   &nbsp &nbsp &nbsp &nbsp||  &nbsp &nbsp &nbsp &nbsp TIK-TOK</p>
+       </div>
+
+       <script>
+        let star = document.getElementById('star');
+        let moon = document.getElementById('moon');
+        let behindM = document.getElementById('behindM');
+        let frontM = document.getElementById('frontM');
+        let text = document.getElementById('text');
+        let btn = document.getElementById('ABot');
+        let Ebtn = document.getElementById('Ebtn');
+
+        window.addEventListener('scroll',function(){
+            let value = window.scrollY;
+            if(value<=600){
+                star.style.left = value * .25+'px';
+                moon.style.top = value * 1.05+'px';
+                behindM.style.top = value * .5+'px';
+                frontM.style.top = value * 0+'px';
+                text.style.marginRight = value * 2+'px';
+                text.style.marginTop = value * .5+'px';
+            }
+            if(value<=450){
+                Ebtn.style.marginTop = value * 1.5+'px';
+            }
+           
+        })
+       </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+.box{
+    position: relative;
+    width:370px ;
+    height: 450px;
+    background: #1f1f1f8e;
+    border-radius: 50px 20px;   
+    
+}
+form{
+    position: absolute;
+    inset: 2px;
+    border-radius: 50px 20px;
+    background:#1f1f1fc7 ;
+    z-index: 10;
+    padding: 30px 30px;
+    display: flex;
+    flex-direction: column;
+}
+h1{
+    color: lightblue;
+    text-align: center;
+    font-weight: 500;
+    font-size: 35px;
+}
+.inputbox{
+    position: relative;
+    width: 300px;
+    margin-top: 35px;
+}
+.inputbox input{
+    position: relative;
+    width: 100%;
+    padding: 20px 10px 10px;
+    background: transparent;
+    border: none;
+    outline: none;
+    z-index: 10;
+    color: #161616;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+}
+input[type = "submit"]{
+    font-size: 20px;
+    border-radius: 90px;
+    border: none;
+    outline: none;
+    padding: 5px;
+    margin-top: 40px;
+    background: lightblue;
+    cursor: pointer;
+    font-weight: 600;
+
+}
+input[type = "submit"]:active{
+    opacity: .8;
+    background: linear-gradient(90deg,#45f3ff,#d9138a);
+}
+.inputbox span{
+    color: aliceblue;
+    left: 0;
+    position: absolute;
+    padding: 20px 10px 10px;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    pointer-events:none;
+    transition: 0.5s;
+}
+.inputbox input:valid ~ span,
+.inputbox input:focus ~ span{
+    color:#45f3ff;
+    transform: translateX(-10px)translateY(-30px);
+    font-size: 0.75em;
+    
+}
+.inputbox i{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background:#45f3ff;
+    pointer-events: none;
+    transition: 0.5s;
+    border-radius: 10px;
+    z-index: 9;
+}
+.inputbox input:valid ~i,
+.inputbox input:focus ~i{
+    height: 44px;
+}
+.links{
+   display: flex;
+   justify-content: space-between;
+}
+.links a{
+    margin: 25px 0;
+    font-size: 1em;
+    text-decoration: none;
+    color: chocolate;
+}
+.links a:hover,
+.links a:nth-child(2){
+    color: rgb(144, 210, 30);
+}
