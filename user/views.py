@@ -23,7 +23,7 @@ def index(request):
 
 # this is a login page !!!
 def login(request):
-    return render(request,'Login.html')
+    return render(request,'login.html')
 
 # this is an api that used to be login !!!
 def api(request):
