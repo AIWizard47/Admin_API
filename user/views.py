@@ -37,7 +37,7 @@ def api(request):
             auth.login(request,user)
             token, created = Token.objects.get_or_create(user=user)
             request.session['user_token'] = token.key # this is used to store the token key of user 
-            print("Token set in session:", token.key)
+            # print("Token set in session:", token.key)
             return redirect('index')
         else:
             return redirect('login')
@@ -86,7 +86,7 @@ def UserAPI(request, uname):
 @login_required
 def profile(request, uname):
     user_token = request.session.get('user_token', '') # And for getting the user token from the upper store file.
-    print("User token from session:", user_token)  # Debug print
+    # print("User token from session:", user_token)  # Debug print
     return render(request,'profile.html',{'user_token': user_token})
 
 def logout(request):
@@ -190,11 +190,13 @@ class PostLogin_AdminUser(APIView):
     def post(self, request, *args, **kwargs):
         email = request.data.get('A_email')
         password = request.data.get('A_password')
-        
+        user = request.user
+        admin_token , created = Token.objects.get_or_create(user=user)
         # Check if an Admin_user with the given email and password exists
-        admin_user_exists = Admin_users.objects.filter(A_email=email, A_password=password).exists()
+        admin_user_exists = Admin_users.objects.filter(A_email=email, A_password=password,admin_token=admin_token).exists()
         
         if admin_user_exists:
             return Response({'Message': 'You are logged in'}, status=status.HTTP_200_OK)
         else:
             return Response({'Message': 'Invalid email or password'}, status=status.HTTP_400_BAD_REQUEST)
+    
