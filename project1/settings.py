@@ -137,3 +137,8 @@ REST_FRAMEWORK = {
 # settings.py
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+#whitelist origine 
+CORS_ORIGIN_WHITELIST = [
+    'https://admin-api-beta.up.railway.app',
+]
