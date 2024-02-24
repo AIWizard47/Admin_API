@@ -139,6 +139,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 #whitelist origine 
-CORS_ORIGIN_WHITELIST = [
+CSRF_TRUSTED_ORIGINS = [
     'https://admin-api-beta.up.railway.app',
 ]
