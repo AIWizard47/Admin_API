@@ -120,8 +120,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+#STATIC_URL = '/static/'
+#STATIC_ROOT = BASE_DIR / 'static'
+
+
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static'
+
+MEDIA_URL = '/media/'
+
+if DEBUG:
+
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+else:
+
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFileStorage'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -134,9 +149,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ]
 }
-# settings.py
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR/ 'media'
+# 
 
 CSRF_TRUSTED_ORIGINS = [
     'https://admin-api-beta.up.railway.app'
