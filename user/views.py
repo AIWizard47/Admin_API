@@ -4,7 +4,7 @@ from django.contrib.auth.models import User, auth
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
-from .models import Message , Product , Category ,Admin_users
+from .models import Message, PhoneNumber , Product , Category ,Admin_users
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from django.contrib import messages
@@ -13,6 +13,8 @@ from django.contrib.auth import authenticate, login
 from .serializers import ProductSerializer , AdminUserSerializer ,AdminUserGetSerializer
 from rest_framework.authtoken.models import Token
 from rest_framework import status
+from django.http import JsonResponse
+from django.urls import reverse
 
 # Create your views here.
 #this is an home page !!!
@@ -56,38 +58,43 @@ def API(request ):
 
 
 # this is for API for my users !!!
-@api_view(['GET'])
-@authentication_classes([TokenAuthentication])
-@permission_classes([IsAuthenticated])
-def UserAPI(request, uname):
-    if request.user.is_authenticated:
-        if uname == request.user.username:
-            msg = {
-                'message': "Welcome to your own API",
-                'username': request.user.username,
-                'email': request.user.email,
-                # Avoid sending the password in the response for security reasons
-            }
-            return Response(msg)
-        else:
-            # If the requested username does not match the authenticated user's username
-            msg = {
-                'message': "Unauthorized to access this resource.",
-            }
-            return Response(msg, status=403)  # Forbidden
-    else:
-        # If user is not authenticated
-        msg = {
-            'message': "You need to be logged in to access this resource.",
-        }
-        return Response(msg, status=401)  # Unauthorized
+@login_required
+def UserAPI(request):
+    # Define a dictionary to store API endpoints and their URLs
+    
+    api_endpoints = {
+        'GetItems': reverse('GetItems'),
+        'PostItems': reverse('PostItems'),
+        'GetItemsByCategory': reverse('GetItemsByCategory', kwargs={'category': 'your_category'}),
+        'Category':{
+            '0' : 'Phone',
+            '1' : 'Laptop',
+            '2' : 'shirt',
+            '3' : 'shoe',
+            '4' : 'EarPhone',
+        },
+        'GetLoginUsers':reverse('GetLogin_AdminUser' , kwargs={'token':'Your_Token'}),
+        'CreateUser':reverse('PostCreate_AdminUser'),
+        'LoginUser':reverse('PostLogin_AdminUser')
+        # Add more API endpoints as needed
+    }
+    
+    # Return the dictionary as JSON response
+    return JsonResponse(api_endpoints)
 
 
 @login_required
 def profile(request, uname):
-    user_token = request.session.get('user_token', '') # And for getting the user token from the upper store file.
-    # print("User token from session:", user_token)  # Debug print
-    return render(request,'profile.html',{'user_token': user_token})
+    user_token = request.session.get('user_token', '') # Get the user token from the session
+    numbers = PhoneNumber.objects.filter(admin_token=user_token)
+    # numbers is a queryset, you might need to extract the first object if only one is expected
+    # number = numbers.first()
+
+    # Debug print statements to check the retrieved phone numbers
+    for number in numbers:
+        print("Phone Number:", number.P_number)
+
+    return render(request, 'profile.html', {'user_token': user_token, 'numbers': numbers})
 
 def logout(request):
     auth.logout(request)

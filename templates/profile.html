@@ -142,8 +142,11 @@
 <h6 class="mb-0">Phone</h6>
 </div>
 <div class="col-sm-9 text-secondary">
-+(239) 816-9029
+    {% for number in numbers %}
+        +91 {{ number.P_number }}<br>
+    {% endfor %}
 </div>
+
 </div>
 <hr>
 <div class="row">
@@ -160,13 +163,15 @@
 <h6 class="mb-0">Address</h6>
 </div>
 <div class="col-sm-9 text-secondary">
-HostURL/api-admin/user/v2/
+/api-admin/user/v2/
 </div>
 </div>
 <hr>
 <div class="row">
 <div class="col-sm-12">
-<a class="btn btn-info " target="__blank" href="/API/user/{{user.username}}">API</a>
+<!-- Add this button in your HTML template -->
+<a class="btn btn-info" target="_blank" href="{% url 'UserAPI' %}">API</a>
+
 </div>
 </div>
 </div>

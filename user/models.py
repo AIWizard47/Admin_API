@@ -28,3 +28,15 @@ class Admin_users(models.Model):
     A_email = models.CharField(max_length=100000)
     A_password = models.CharField(max_length=100000)
     admin_token = models.ForeignKey(Token, on_delete=models.CASCADE)
+    
+class CountryCode(models.Model):
+    code = models.CharField(max_length=5)
+    
+    def __str__(self):
+        return self.code
+    
+class PhoneNumber(models.Model):
+    P_number = models.CharField(max_length=10)
+    P_code = models.ForeignKey(CountryCode,on_delete=models.CASCADE)
+    admin_token = models.ForeignKey(Token, on_delete=models.CASCADE)
+    
