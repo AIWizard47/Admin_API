@@ -61,18 +61,21 @@ def API(request ):
 @login_required
 def UserAPI(request):
     # Define a dictionary to store API endpoints and their URLs
-    
+    categories = Category.objects.all()
+    category_list = []
+    for category in categories:
+        category_dict = {
+            'id': category.id,
+            'name': category.name,
+            # Add more fields if needed
+        }
+        category_list.append(category_dict)
+        
     api_endpoints = {
         'GetItems': reverse('GetItems'),
         'PostItems': reverse('PostItems'),
         'GetItemsByCategory': reverse('GetItemsByCategory', kwargs={'category': 'your_category'}),
-        'Category':{
-            '0' : 'Phone',
-            '1' : 'Laptop',
-            '2' : 'shirt',
-            '3' : 'shoe',
-            '4' : 'EarPhone',
-        },
+        'Category':category_list,
         'GetLoginUsers':reverse('GetLogin_AdminUser' , kwargs={'token':'Your_Token'}),
         'CreateUser':reverse('PostCreate_AdminUser'),
         'LoginUser':reverse('PostLogin_AdminUser')
@@ -81,6 +84,7 @@ def UserAPI(request):
     
     # Return the dictionary as JSON response
     return JsonResponse(api_endpoints)
+
 
 
 @login_required
