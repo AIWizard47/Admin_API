@@ -4,7 +4,7 @@ from django.contrib.auth.models import User, auth
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
-from .models import Message, PhoneNumber , Product , Category ,Admin_users
+from .models import Message, PhoneNumber , Product , Category ,Admin_users ,Chart
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from django.contrib import messages
@@ -78,13 +78,14 @@ def UserAPI(request):
         'Category':category_list,
         'GetLoginUsers':reverse('GetLogin_AdminUser' , kwargs={'token':'Your_Token'}),
         'CreateUser':reverse('PostCreate_AdminUser'),
-        'LoginUser':reverse('PostLogin_AdminUser')
+        'LoginUser':reverse('PostLogin_AdminUser'),
+        'GetChart_User':reverse('GetChart_User'),
+        'PostChart_user':reverse('PostChart_user'),
         # Add more API endpoints as needed
     }
     
     # Return the dictionary as JSON response
     return JsonResponse(api_endpoints)
-
 
 
 @login_required
@@ -183,7 +184,7 @@ class PostCreate_AdminUser(APIView):
         email = request.data.get('A_email')
         username = request.data.get('A_username')
         if Admin_users.objects.filter(A_email=email).exists() or Admin_users.objects.filter(A_username=username).exists():
-            return Response({'error': 'Email already exists'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'Email And username already exists'}, status=status.HTTP_400_BAD_REQUEST)
 
         # Create an AdminUser instance and set the admin_token
         serializer = AdminUserSerializer(data=request.data)
@@ -199,15 +200,76 @@ class PostLogin_AdminUser(APIView):
     permission_classes = [IsAuthenticated]
     
     def post(self, request, *args, **kwargs):
-        email = request.data.get('A_email')
-        password = request.data.get('A_password')
+        email = request.data.get('email')
+        password = request.data.get('password')
         user = request.user
         admin_token , created = Token.objects.get_or_create(user=user)
         # Check if an Admin_user with the given email and password exists
         admin_user_exists = Admin_users.objects.filter(A_email=email, A_password=password,admin_token=admin_token).exists()
-        
         if admin_user_exists:
+            request.session['user_login'] = email
             return Response({'Message': 'You are logged in'}, status=status.HTTP_200_OK)
         else:
             return Response({'Message': 'Invalid email or password'}, status=status.HTTP_400_BAD_REQUEST)
     
+class GetChart_User(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request, *args, **kwargs):
+        
+        # ------------**-----------------#
+        # Get a chart instance
+        #chart = Chart.objects.get(pk=1)        
+
+        # Add a product to the chart
+        #product = Product.objects.get(pk=1)
+        #chart.products.add(product)
+
+        # Remove a product from the chart
+        #chart.products.remove(product)
+
+        # Get all products associated with the chart
+        #products = chart.products.all()
+        # ------------**-----------------#
+        try:
+            email = request.data.get('email')
+            charts = Chart.objects.get(U_user__A_email=email)
+            products = charts.product.all()
+            data = []
+            for pro in products:
+                data.append({
+                    'id': pro.id,
+                    'name': pro.P_name,
+                    'description':pro.P_description,
+                    'price':pro.P_price,
+                    'picture':pro.P_picture.url,
+                    'quantity':pro.P_quantity,
+                })
+                
+            return Response(data)
+        except Exception:
+            return Response({'message':'Enter the email first'},status=status.HTTP_400_BAD_REQUEST)
+        
+    
+class PostChart_user(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    
+    def post(self, request, *args, **kwargs):
+        
+        # user_login = request.session.get('user_login', '')
+        try:
+            email = request.data.get('email')
+            id = request.data.get('id')
+            if Admin_users.objects.filter(A_email=email).exists():
+                chart = Chart.objects.get(U_user__A_email=email)
+                product = Product.objects.get(pk=id)
+                chart.product.add(product)
+                return Response({'Message': 'Your product is add to cart'}, status=status.HTTP_200_OK)
+            else:
+                return Response({'Message': 'you are not sign in'}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception:
+            return Response({'Message': 'Enter email and product id first'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        

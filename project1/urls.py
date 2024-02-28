@@ -30,4 +30,4 @@ urlpatterns = [
     path('',include('user.urls')),
     path('Beta/v2/api/get-token/user/',obtain_auth_token,name='obtain'), # here used to post the username and password to access the token
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]

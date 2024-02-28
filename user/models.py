@@ -2,6 +2,8 @@ from django.db import models
 # Import the Token model from rest_framework.authtoken.models
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
+from django.core.exceptions import ValidationError
+from django.db.models import Count
 
 # Create your models here.
 class Category(models.Model):
@@ -16,6 +18,7 @@ class Product(models.Model):
     P_description = models.CharField(max_length=100000000)
     P_category = models.ForeignKey(Category, on_delete=models.CASCADE)
     P_picture = models.ImageField(upload_to='product_pictures/')
+    P_quantity = models.PositiveIntegerField()
     
     
 class Message(models.Model):
@@ -25,7 +28,7 @@ class Message(models.Model):
     
 class Admin_users(models.Model):
     A_username = models.CharField(max_length=100000)
-    A_email = models.CharField(max_length=100000)
+    A_email = models.EmailField(max_length=254)
     A_password = models.CharField(max_length=100000)
     admin_token = models.ForeignKey(Token, on_delete=models.CASCADE)
     
@@ -39,4 +42,9 @@ class PhoneNumber(models.Model):
     P_number = models.CharField(max_length=10)
     P_code = models.ForeignKey(CountryCode,on_delete=models.CASCADE)
     admin_token = models.ForeignKey(Token, on_delete=models.CASCADE)
+    
+
+class Chart(models.Model):
+    U_user = models.ForeignKey(Admin_users,on_delete=models.CASCADE)
+    product = models.ManyToManyField(Product,blank=True)
     
