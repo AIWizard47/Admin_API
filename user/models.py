@@ -42,7 +42,7 @@ class PhoneNumber(models.Model):
     P_number = models.CharField(max_length=10)
     P_code = models.ForeignKey(CountryCode,on_delete=models.CASCADE)
     admin_token = models.ForeignKey(Token, on_delete=models.CASCADE)
-    
+
 
 class Chart(models.Model):
     U_user = models.ForeignKey(Admin_users,on_delete=models.CASCADE)

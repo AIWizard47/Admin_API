@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ['*','admin-api-beta.up.railway.app']
 # Application definition
 
 INSTALLED_APPS = [
-    'rest_framework',
+    'rest_framework',   
     'rest_framework.authtoken', # this will make the token in database 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,10 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'user',
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -125,7 +127,7 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-
+CORS_ALLOW_ALL_ORIGINS =True
 MEDIA_URL = '/media/'
 
 if DEBUG:
